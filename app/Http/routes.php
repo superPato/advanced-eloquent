@@ -12,5 +12,17 @@
 */
 
 Route::get('/', function () {
-    return App\Book::all();
+	$books = App\Book::get();
+
+    return view('destroy', compact('books'));
+});
+
+Route::delete('destroy', function (Illuminate\Http\Request $request) {
+	$ids = $request->get('ids');
+
+	if (count($ids)) {
+		App\Book::destroy($ids);
+	}
+
+	return back();
 });
