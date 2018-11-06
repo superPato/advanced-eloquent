@@ -14,11 +14,17 @@ class CreateBooksTable extends Migration
     {
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
+
+            $table->integer('category_id')->unsigned();
             $table->string('title');
             $table->text('description');
 
             $table->softDeletes(); // delete_at
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
