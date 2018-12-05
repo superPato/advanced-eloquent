@@ -12,7 +12,9 @@
 */
 
 Route::get('/', function () {
-	$categories = App\Category::has('books')->get();
+	$categories = App\Category::whereHas('books', function ($query) {
+		$query->where('status', 'public');
+	})->get();
 
 	return view('relationship', compact('categories'));
 });
