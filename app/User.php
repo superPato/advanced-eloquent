@@ -33,4 +33,11 @@ class User extends Authenticatable
     {
         return $this->manyBooks()->lists('book_id')->toArray();
     }
+
+    public function exams()
+    {
+        return $this->belongsToMany(Exam::class)
+            ->withPivot('score')
+            ->withTimestamps();
+    }
 }

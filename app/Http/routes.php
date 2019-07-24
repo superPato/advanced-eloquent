@@ -11,12 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-	$books = DB::table('categories')
-		->join('books', 'categories.id', '=', 'books.category_id')
-		->where('books.status', 'public')
-		->select('categories.name as category', 'books.title', 'books.description')
-		->get();
+use App\User;
 
-	return view('querybuilder.index', compact('books'));
+Route::get('/', function () {
+	$user = User::find(1);
+
+	echo $user->name;
+	foreach ($user->exams as $exam) {
+		echo
+			 '<li>'
+			. $exam->title
+			. ' - Nota: ' . $exam->pivot->score
+			. ' - Fecha: ' . $exam->pivot->created_at
+			. '</li>';
+	}
 });
