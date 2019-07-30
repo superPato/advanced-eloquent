@@ -11,18 +11,12 @@
 |
 */
 
-use App\User;
+use App\Book;
 
 Route::get('/', function () {
-	$user = User::find(1);
+	$books = Book::with('category', 'user')->get();
 
-	echo $user->name;
-	foreach ($user->exams as $exam) {
-		echo
-			 '<li>'
-			. $exam->title
-			. ' - Nota: ' . $exam->pivot->score
-			. ' - Fecha: ' . $exam->pivot->created_at
-			. '</li>';
-	}
+	// dd($books);
+	
+	return view('home', compact('books'));
 });
