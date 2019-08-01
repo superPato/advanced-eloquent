@@ -11,12 +11,13 @@
 |
 */
 
-use App\Book;
+use App\Page;
 
 Route::get('/', function () {
-	$books = Book::with('category', 'user')->get();
+	$page = Page::find(6);
 
-	// dd($books);
-	
-	return view('home', compact('books'));
+	echo $page->name;
+	foreach ($page->comments as $comment) {
+		echo '<li>' . $comment->body . '</li>';
+	}
 });

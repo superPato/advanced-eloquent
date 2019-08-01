@@ -35,3 +35,18 @@ $factory->define(App\Exam::class, function (Faker\Generator $faker) {
         'title' => $faker->name,
     ];
 });
+
+$factory->define(App\Page::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'body' => $faker->text,
+    ];
+});
+
+$factory->define(App\Post::class, function (Faker\Generator $faker)
+{
+    return [
+        'title' => $faker->name,
+        'body' => $faker->text,
+    ];
+});
