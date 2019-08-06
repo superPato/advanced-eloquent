@@ -10,6 +10,13 @@ use App\Http\Requests;
 
 class UserController extends Controller
 {
+    public function getUser($id)
+    {
+        $user = User::find($id);
+
+        return view('user', compact('user'));
+    }
+
     public function getEditManyToMany($user_id)
     {
         $user = User::find($user_id);

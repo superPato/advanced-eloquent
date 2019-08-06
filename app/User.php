@@ -40,4 +40,9 @@ class User extends Authenticatable
             ->withPivot('score')
             ->withTimestamps();
     }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
 }
